@@ -89,7 +89,7 @@ strip_ext (char *ss)
     char *s;
     char *e = NULL;
 
-    if (ss = NULL)
+    if (ss == NULL)
         return NULL;
 
     for (s = ss; *s != '\0'; s++)
