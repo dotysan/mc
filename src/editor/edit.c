@@ -1783,7 +1783,7 @@ void
 edit_user_menu (WEdit * edit, const char *menu_file, int selected_entry)
 {
     char *block_file;
-    gboolean nomark;
+    gboolean mark;
     off_t curs;
     off_t start_mark, end_mark;
     struct stat status;
@@ -1792,8 +1792,8 @@ edit_user_menu (WEdit * edit, const char *menu_file, int selected_entry)
     block_file = mc_config_get_full_path (EDIT_HOME_BLOCK_FILE);
     block_file_vpath = vfs_path_from_str (block_file);
     curs = edit->buffer.curs1;
-    nomark = !eval_marks (edit, &start_mark, &end_mark);
-    if (!nomark)
+    mark = eval_marks (edit, &start_mark, &end_mark);
+    if (mark)
         edit_save_block (edit, block_file, start_mark, end_mark);
 
     /* run shell scripts from menu */
@@ -1804,7 +1804,7 @@ edit_user_menu (WEdit * edit, const char *menu_file, int selected_entry)
         FILE *fd;
 
         /* i.e. we have marked block */
-        if (!nomark)
+        if (mark)
             rc = edit_block_delete_cmd (edit);
 
         if (rc == 0)
@@ -1812,7 +1812,7 @@ edit_user_menu (WEdit * edit, const char *menu_file, int selected_entry)
             off_t ins_len;
 
             ins_len = edit_insert_file (edit, block_file_vpath);
-            if (!nomark && ins_len > 0)
+            if (mark && ins_len > 0)
                 edit_set_markers (edit, start_mark, start_mark + ins_len, 0, 0);
         }
         /* truncate block file */
