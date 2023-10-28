@@ -2018,7 +2018,7 @@ edit_insert_file (WEdit * edit, const vfs_path_t * filename_vpath)
     {
         int file;
         off_t blocklen;
-        int vertical_insertion = 0;
+        gboolean vertical_insertion = FALSE;
         char *buf;
 
         file = mc_open (filename_vpath, O_RDONLY | O_BINARY);
@@ -2031,7 +2031,7 @@ edit_insert_file (WEdit * edit, const vfs_path_t * filename_vpath)
         {
             /* if contain signature VERTICAL_MAGIC then it vertical block */
             if (memcmp (buf, VERTICAL_MAGIC, sizeof (VERTICAL_MAGIC)) == 0)
-                vertical_insertion = 1;
+                vertical_insertion = TRUE;
             else
                 mc_lseek (file, 0, SEEK_SET);
         }
