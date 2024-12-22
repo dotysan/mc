@@ -17,7 +17,7 @@ case "$1" in
   *.lzma) MYCAT="lzma -dc";;
   *.lzo) MYCAT="lzop -dc";;
   *.xz)  MYCAT="xz -dc";;
-  *.zst) MYCAT="zstd -dc";;
+  *.zst) MYCAT="pzstd -dc";;
   *.bz2) MYCAT="bzip2 -dc";;
   *.gz)  MYCAT="gzip -dc";;
   *.z)   MYCAT="gzip -dc";;

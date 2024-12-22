@@ -137,7 +137,7 @@ static const struct edit_filters
 } all_filters[] = {
     /* *INDENT-OFF* */
     { "xz -cd %s 2>&1", "xz > %s", ".xz"},
-    { "zstd -cd %s 2>&1", "zstd > %s", ".zst"},
+    { "pzstd -cd %s 2>&1", "pzstd > %s", ".zst"},
     { "lz4 -cd %s 2>&1", "lz4 > %s", ".lz4" },
     { "lzip -cd %s 2>&1", "lzip > %s", ".lz"},
     { "lzma -cd %s 2>&1", "lzma > %s", ".lzma" },

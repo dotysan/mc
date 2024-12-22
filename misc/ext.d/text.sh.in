@@ -38,7 +38,7 @@ get_unpacker() {
         unpacker="xz -dc"
         ;;
     man.zst)
-        unpacker="zstd -dc"
+        unpacker="pzstd -dc"
         ;;
     esac
     echo ${unpacker}
